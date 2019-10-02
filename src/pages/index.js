@@ -17,23 +17,19 @@ class BlogIndex extends React.Component {
         <form name="contact" method="post" netlify-honeypot="b" autocomplete="off" data-netlify data-secure>
   <p>
     <label for="name">Basic Field</label>
-    <input type="text" name="name" id="name" />
+    <input type="text" data-secure-field name="name" id="name" />
   </p>
        <p>
-    <label>Email: <input type="text" name="email" /></label>
+    <label>Email: <input type="text" data-secure-field name="email" /></label>
   </p>
     <p>
-    <label>Drivers Permit: <input type="file" name="fileToUpload_permit" id="fileToUpload_permit" type="file" /></label>
+    <label>Drivers Permit: <input type="file" data-secure-field name="fileToUpload_permit" id="fileToUpload_permit" type="file" /></label>
   </p>   
     <p>
-    <label>Passport Permit: <input type="file" name="fileToUpload_pass" id="fileToUpload_pass" type="file" /></label>
+    <label>Passport Permit: <input type="file" data-secure-field name="fileToUpload_pass" id="fileToUpload_pass" type="file" /></label>
   </p>
       <p>
-    <label>Utility Bill: <input type="file" name="fileToUpload_bill" id="fileToUpload_bill" type="file" /></label>
-  </p> 
-  <p>
-    <label for="secure">Secure Field</label>
-    <input type="text" name="secure" id="secure" data-secure-field />
+    <label>Utility Bill: <input type="file" data-secure-field name="fileToUpload_bill" id="fileToUpload_bill" type="file" /></label>
   </p>
   <p>
     <button type="submit" id="submit">Send</button>
