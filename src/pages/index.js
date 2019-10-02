@@ -42,6 +42,7 @@ export default class Index extends React.Component {
                 method="post"
                 action="index.js"
                 data-netlify="true"
+      data-secure
                 data-netlify-honeypot="bot-field"
                 onSubmit={this.handleSubmit}
               >
