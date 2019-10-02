@@ -15,15 +15,27 @@ class BlogIndex extends React.Component {
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO title="All posts" />
-        <form name="contact" netlify>
-  <p>
-    <label>Name <input type="text" name="name" /></label>
+   <form name="contact" method="POST" netlify-honeypot="bot-field" data-netlify="true">
+  <p class="hidden">
+    <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
   </p>
   <p>
-    <label>Email <input type="email" name="email" /></label>
+    <label>Email: <input type="text" name="email" /></label>
   </p>
   <p>
-    <button type="submit">Send</button>
+    <label>Message: <textarea name="message"></textarea></label>
+  </p>
+   <p>
+    <label>Drivers Permit: <input type="file" name="fileToUpload" id="fileToUpload" type="file"></label>
+  </p>   
+    <p>
+    <label>Passport Permit: <input type="file" name="fileToUpload" id="fileToUpload" type="file"></label>
+  </p>
+      <p>
+    <label>Utility Bill: <input type="file" name="fileToUpload" id="fileToUpload" type="file"></label>
+  </p> 
+  <p>
+    <button type="submit">Submit</button>
   </p>
 </form>
       </Layout>
