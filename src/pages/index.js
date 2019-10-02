@@ -1,271 +1,44 @@
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../../../favicon.ico">
+import React from "react"
 
-    <title>Checkout example for Bootstrap</title>
+import Bio from "../components/bio"
+import Layout from "../components/layout"
+import SEO from "../components/seo"
 
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+class BlogIndex extends React.Component {
+    render() {
+        const { data } = this.props
+        const siteTitle = data.site.siteMetadata.title
+        const posts = data.allMarkdownRemark.edges
 
+        return (
+            <Layout location={this.props.location} title={siteTitle}>
+                <form name="contact" method="post" data-netlify="true" data-netlify-honeypot="bot-field">
+                    <input type="hidden" name="bot-field" />
+                    <input type="hidden" name="form-name" value="contact" />
+                    <div className="field half first">
+                        <label htmlFor="name">Name</label>
+                        <input type="text" name="name" id="name" />
+                    </div>
+                    <div className="field half">
+                        <label htmlFor="email">Email</label>
+                        <input type="text" name="email" id="email" />
+                    </div>
+                    <div className="field">
+                        <label htmlFor="message">Message</label>
+                        <textarea name="message" id="message" rows="6" />
+                    </div>
+                    <ul className="actions">
+                        <li>
+                            <input type="submit" value="Send Message" className="special" />
+                        </li>
+                        <li>
+                            <input type="reset" value="Clear" />
+                        </li>
+                    </ul>
+                </form>
+            </Layout>
+        )
+    }
+}
 
-    <!-- Custom styles for this template -->
-    <link href="form-validation.css" rel="stylesheet">
-  </head>
-
-  <body class="bg-light">
-
-    <div class="container">
-      <div class="py-5 text-center">
-        <h2>Testing form</h2>
-        <p class="lead">This form is used for testing Netlify's form collection functionality. The submissions of this form are not encrypted.</p>
-        <p class="lead">
-          Each required form group has a validation state that can be triggered by attempting to submit the form without completing it. <span class="badge badge-info">Note: this is currently disabled</span>
-        </p>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12 order-md-1">
-
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12 order-md-1">
-          <form name="form-testing" method="post" class="needs-validation" novalidate netlify>
-
-            <h4 class="mb-3">Datalist and Select</h4>
-
-            <div class="mb-3">
-              <label for="browserName">What browser do you use?</label>
-              <input list="browsers" class="form-control" name="browserName" id="browserName" />
-              <datalist id="browsers">
-                <option value="Chrome">
-                <option value="Firefox">
-                <option value="Internet Explorer">
-                <option value="Opera">
-                <option value="Safari">
-                <option value="Microsoft Edge">
-              </datalist>
-            </div>
-
-            <div class="mb-3">
-              <label for="Groups">Which version?</label>
-              <select class="custom-select" name="browserVersion">
-                <optgroup label="Group 1">
-                  <option>Version 1.1</option>
-                </optgroup>
-                <optgroup label="Group 2">
-                  <option>Version 2.1</option>
-                  <option>Version 2.2</option>
-                </optgroup>
-                <optgroup label="Group 3" disabled>
-                  <option>Version 3.1</option>
-                  <option>Version 3.2</option>
-                  <option>Version 3.3</option>
-                </optgroup>
-              </select>
-            </div>
-
-            <hr class="mb-4">
-
-            <h4 class="mb-3">Billing address</h4>
-
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="firstName">First name</label>
-                <input type="text" class="form-control" name="firstName" id="firstName" placeholder="" value="" required>
-                <div class="invalid-feedback">
-                  Valid first name is required.
-                </div>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label for="lastName">Last name</label>
-                <input type="text" class="form-control" name="lastName" id="lastName" placeholder="" value="" required>
-                <div class="invalid-feedback">
-                  Valid last name is required.
-                </div>
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="username">Username</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">@</span>
-                </div>
-                <input type="text" class="form-control" name="username" id="username" placeholder="Username" required>
-                <div class="invalid-feedback" style="width: 100%;">
-                  Your username is required.
-                </div>
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="email">Email <span class="text-muted">(Optional)</span></label>
-              <input type="email" class="form-control" name="Email" id="email" placeholder="you@example.com">
-              <div class="invalid-feedback">
-                Please enter a valid email address for shipping updates.
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="address">Address</label>
-              <input type="text" class="form-control" name="address" id="address" placeholder="1234 Main St" required>
-              <div class="invalid-feedback">
-                Please enter your shipping address.
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
-              <input type="text" class="form-control" name="address2" id="address2" placeholder="Apartment or suite">
-            </div>
-
-            <div class="row">
-              <div class="col-md-5 mb-3">
-                <label for="country">Country</label>
-                <select class="custom-select d-block w-100" name="country" id="country" required>
-                  <option value="">Choose...</option>
-                  <option>United States</option>
-                </select>
-                <div class="invalid-feedback">
-                  Please select a valid country.
-                </div>
-              </div>
-              <div class="col-md-4 mb-3">
-                <label for="state">State</label>
-                <select class="custom-select d-block w-100" name="state" id="state" required>
-                  <option value="">Choose...</option>
-                  <option>California</option>
-                </select>
-                <div class="invalid-feedback">
-                  Please provide a valid state.
-                </div>
-              </div>
-              <div class="col-md-3 mb-3">
-                <label for="zip">Zip</label>
-                <input type="text" class="form-control" name="zip" id="zip" placeholder="" required>
-                <div class="invalid-feedback">
-                  Zip code required.
-                </div>
-              </div>
-            </div>
-            <hr class="mb-4">
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" name="same-address" id="same-address">
-              <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" name="save-info" id="save-info">
-              <label class="custom-control-label" for="save-info">Save this information for next time</label>
-            </div>
-            <hr class="mb-4">
-
-            <h4 class="mb-3">Payment</h4>
-
-            <div class="d-block my-3">
-              <div class="custom-control custom-radio">
-                <input id="credit" name="paymentMethod" value="credit" type="radio" class="custom-control-input" checked required>
-                <label class="custom-control-label" for="credit">Credit card</label>
-              </div>
-              <div class="custom-control custom-radio">
-                <input id="debit" name="paymentMethod" value="debit" type="radio" class="custom-control-input" required>
-                <label class="custom-control-label" for="debit">Debit card</label>
-              </div>
-              <div class="custom-control custom-radio">
-                <input id="paypal" name="paymentMethod" value="paypal" type="radio" class="custom-control-input" required>
-                <label class="custom-control-label" for="paypal">Paypal</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="cc-name">Name on card</label>
-                <input type="text" class="form-control" name="cc-name" id="cc-name" placeholder="" required>
-                <small class="text-muted">Full name as displayed on card</small>
-                <div class="invalid-feedback">
-                  Name on card is required
-                </div>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label for="cc-number">Credit card number</label>
-                <input type="text" class="form-control" name="cc-number" id="cc-number" placeholder="" required>
-                <div class="invalid-feedback">
-                  Credit card number is required
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-3 mb-3">
-                <label for="cc-expiration">Expiration</label>
-                <input type="text" class="form-control" name="cc-expiration" id="cc-expiration" placeholder="" required>
-                <div class="invalid-feedback">
-                  Expiration date required
-                </div>
-              </div>
-              <div class="col-md-3 mb-3">
-                <label for="cc-expiration">CVV</label>
-                <input type="text" class="form-control" name="cc-cvv" id="cc-cvv" placeholder="" required>
-                <div class="invalid-feedback">
-                  Security code required
-                </div>
-              </div>
-            </div>
-            <hr class="mb-4">
-
-            <h4 class="mb-3">File upload</h4>
-
-            <div class="input-group mb-3">
-              <div class="custom-file">
-                <input type="file" class="custom-file-input" name="inputGroupFile02" id="inputGroupFile02">
-                <label class="custom-file-label" for="inputGroupFile02">Choose file</label>
-              </div>
-              <div class="input-group-append">
-                <span class="input-group-text" id="">Upload</span>
-              </div>
-            </div>
-            <div netlify-recaptcha></div>
-
-            <hr class="mb-4">
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
-          </form>
-        </div>
-      </div>
-
-    </div>
-
-    <br />
-    <hr class="mb-4">
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <!-- <script>
-      // Example starter JavaScript for disabling form submissions if there are invalid fields
-      (function() {
-        'use strict';
-
-        window.addEventListener('load', function() {
-          // Fetch all the forms we want to apply custom Bootstrap validation styles to
-          var forms = document.getElementsByClassName('needs-validation');
-
-          // Loop over them and prevent submission
-          var validation = Array.prototype.filter.call(forms, function(form) {
-            form.addEventListener('submit', function(event) {
-              if (form.checkValidity() === false) {
-                event.preventDefault();
-                event.stopPropagation();
-              }
-              form.classList.add('was-validated');
-            }, false);
-          });
-        }, false);
-      })();
-    </script> -->
-  </body>
-</html>
+export default BlogIndex
