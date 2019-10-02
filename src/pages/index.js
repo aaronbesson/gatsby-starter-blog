@@ -70,20 +70,20 @@ function App() {
                 </p>
                 <div {...getRootProps()}>
                     <label>Drivers Permit: </label>
-                    <input type="file" data-secure-field name="fileToUpload_permit" id="fileToUpload_permit" /></label>
-                {
-                    isDragActive ?
-                        <p>Drop the files here ...</p> :
-                        <p>Drag 'n' drop some files here, or click to select files</p>
-                }
-            
-          </div>
-            <p>
-                <button type="submit">Send</button>
-            </p>
-        </form>
-        <h3>{status}</h3>
-    </div >
-  );
+                    <input type="file" data-secure-field name="fileToUpload_permit" id="fileToUpload_permit" />
+                    {
+                        isDragActive ?
+                            <p>Drop the files here ...</p> :
+                            <p>Drag 'n' drop some files here, or click to select files</p>
+                    }
+
+                </div>
+                <p>
+                    <button type="submit">Send</button>
+                </p>
+            </form>
+            <h3>{status}</h3>
+        </div >
+    );
 }
 export default App;
