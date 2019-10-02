@@ -14,18 +14,15 @@ class BlogIndex extends React.Component {
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
-        <SEO title="All posts" />
-   <form name="contact" method="POST" netlify-honeypot="bot-field" data-netlify="true">
-  <p class="hidden">
-    <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
-  </p>
+        <form name="contact" method="post" netlify-honeypot="b" autocomplete="off" data-netlify data-secure>
   <p>
+    <label for="name">Basic Field</label>
+    <input type="text" name="name" id="name" />
+  </p>
+       <p>
     <label>Email: <input type="text" name="email" /></label>
   </p>
-  <p>
-    <label>Message: <textarea name="message"></textarea></label>
-  </p>
-   <p>
+    <p>
     <label>Drivers Permit: <input type="file" name="fileToUpload_permit" id="fileToUpload_permit" type="file" /></label>
   </p>   
     <p>
@@ -35,7 +32,11 @@ class BlogIndex extends React.Component {
     <label>Utility Bill: <input type="file" name="fileToUpload_bill" id="fileToUpload_bill" type="file" /></label>
   </p> 
   <p>
-    <button type="submit">Submit</button>
+    <label for="secure">Secure Field</label>
+    <input type="text" name="secure" id="secure" data-secure-field />
+  </p>
+  <p>
+    <button type="submit" id="submit">Send</button>
   </p>
 </form>
       </Layout>
