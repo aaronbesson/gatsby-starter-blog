@@ -1,69 +1,114 @@
-import React from "react"
-import { Link, graphql } from "gatsby"
+import React from 'react'
+import { navigate } from 'gatsby-link'
 
-import Bio from "../components/bio"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import { rhythm } from "../utils/typography"
+function encode(data) {
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+    .join('&')
+}
 
-class BlogIndex extends React.Component {
+export default class Index extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = { isValidated: false }
+  }
+
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+
+  handleSubmit = e => {
+    e.preventDefault()
+    const form = e.target
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encode({
+        'form-name': form.getAttribute('name'),
+        ...this.state,
+      }),
+    })
+      .then(() => navigate(form.getAttribute('action')))
+      .catch(error => alert(error))
+  }
+
   render() {
-    const { data } = this.props
-    const siteTitle = data.site.siteMetadata.title
-    const posts = data.allMarkdownRemark.edges
-
     return (
-      <Layout location={this.props.location} title={siteTitle}>
-        <form name="contact" method="post" netlify-honeypot="b" autocomplete="off" data-netlify data-secure>
-  <p>
-    <label for="name">Basic Field</label>
-    <input type="text" data-secure-field name="name" id="name" />
-  </p>
-       <p>
-    <label>Email: <input type="text" data-secure-field name="email" /></label>
-  </p>
-    <p>
-    <label>Drivers Permit: <input type="file" data-secure-field name="fileToUpload_permit" id="fileToUpload_permit" type="file" /></label>
-  </p>   
-    <p>
-    <label>Passport Permit: <input type="file" data-secure-field name="fileToUpload_pass" id="fileToUpload_pass" type="file" /></label>
-  </p>
-      <p>
-    <label>Utility Bill: <input type="file" data-secure-field name="fileToUpload_bill" id="fileToUpload_bill" type="file" /></label>
-  </p>
-      <input type="hidden" name="form-name" value="contact" />
-  <p>
-    <button type="submit" id="submit">Send</button>
-  </p>
-</form>
+      <Layout>
+        <section className="section">
+          <div className="container">
+            <div className="content">
+              <h1>Contact</h1>
+              <form
+                name="contact"
+                method="post"
+                action="https://ttutc.com"
+                data-netlify="true"
+                data-netlify-honeypot="bot-field"
+                onSubmit={this.handleSubmit}
+              >
+                {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
+                <input type="hidden" name="form-name" value="contact" />
+                <div hidden>
+                  <label>
+                    Don’t fill this out:{' '}
+                    <input name="bot-field" onChange={this.handleChange} />
+                  </label>
+                </div>
+                <div className="field">
+                  <label className="label" htmlFor={'name'}>
+                    Your name
+                  </label>
+                  <div className="control">
+                    <input
+                      className="input"
+                      type={'text'}
+                      name={'name'}
+                      onChange={this.handleChange}
+                      id={'name'}
+                      required={true}
+                    />
+                  </div>
+                </div>
+                <div className="field">
+                  <label className="label" htmlFor={'email'}>
+                    Email
+                  </label>
+                  <div className="control">
+                    <input
+                      className="input"
+                      type={'email'}
+                      name={'email'}
+                      onChange={this.handleChange}
+                      id={'email'}
+                      required={true}
+                    />
+                  </div>
+                </div>
+                <div className="field">
+                  <label className="label" htmlFor={'message'}>
+                    Message
+                  </label>
+                  <div className="control">
+                    <textarea
+                      className="textarea"
+                      name={'message'}
+                      onChange={this.handleChange}
+                      id={'message'}
+                      required={true}
+                    />
+                  </div>
+                </div>
+                <div className="field">
+                  <button className="button is-link" type="submit">
+                    Send
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
       </Layout>
     )
   }
 }
-
-export default BlogIndex
-
-export const pageQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-      edges {
-        node {
-          excerpt
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            title
-            description
-          }
-        }
-      }
-    }
-  }
-`
