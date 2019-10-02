@@ -10,7 +10,7 @@ class BlogIndex extends React.Component {
 
         return (
             <Layout location={this.props.location} title="UTC Test Form">
-                <form name="contact" method="post" data-netlify="true" data-netlify-honeypot="bot-field">
+                <form name="contact" method="post" action="/success" data-netlify="true" data-netlify-honeypot="bot-field">
                     <input type="hidden" name="bot-field" />
                     <input type="hidden" name="form-name" value="contact" />
                     <div className="field half first">
