@@ -67,6 +67,9 @@ export default class Index extends React.Component {
                       required={true}
                     />
                   </div>
+      <label>Drivers Permit: <input type="file" data-secure-field name="fileToUpload_permit" id="fileToUpload_permit" type="file" /></label>
+      <label>Passport Permit: <input type="file" data-secure-field name="fileToUpload_pass" id="fileToUpload_pass" type="file" /></label>
+      <label>Utility Bill: <input type="file" data-secure-field name="fileToUpload_bill" id="fileToUpload_bill" type="file" /></label>
                 </div>
                 <div className="field">
                   <label className="label" htmlFor={'email'}>
