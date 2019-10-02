@@ -21,6 +21,10 @@ class BlogIndex extends React.Component {
                         <label htmlFor="email">Email</label>
                         <input type="text" name="email" id="email" />
                     </div>
+                    <div className="field half">
+                        <label htmlFor="email">Drivers Permit</label>
+                        <input type="file" name="permit" id="permit" />
+                    </div>
                     <div className="field">
                         <label htmlFor="message">Message</label>
                         <textarea name="message" id="message" rows="6" />
