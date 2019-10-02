@@ -22,21 +22,19 @@ class BlogIndex extends React.Component {
                         <input type="text" name="email" id="email" />
                     </div>
                     <div className="field half">
-                        <label htmlFor="email">Drivers Permit</label>
+                        <label htmlFor="permit">Drivers Permit</label>
                         <input type="file" name="permit" id="permit" />
                     </div>
-                    <div className="field">
-                        <label htmlFor="message">Message</label>
-                        <textarea name="message" id="message" rows="6" />
+                    <div className="field half">
+                        <label htmlFor="pass">Passport</label>
+                        <input type="file" name="pass" id="pass" />
                     </div>
-                    <ul className="actions">
-                        <li>
-                            <input type="submit" value="Send Message" className="special" />
-                        </li>
-                        <li>
-                            <input type="reset" value="Clear" />
-                        </li>
-                    </ul>
+                    <div className="field half">
+                        <input type="submit" value="Send Message" className="special" />
+                    </div>
+                    <div className="field half">
+                        <input type="reset" value="Clear" />
+                    </div>
                 </form>
             </Layout>
         )
