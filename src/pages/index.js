@@ -31,7 +31,7 @@ class BlogIndex extends React.Component {
       <p>
     <label>Utility Bill: <input type="file" data-secure-field name="fileToUpload_bill" id="fileToUpload_bill" type="file" /></label>
   </p>
-      <input type="hidden" name="form-name" value="your-form-name" />
+      <input type="hidden" name="form-name" value="contact" />
   <p>
     <button type="submit" id="submit">Send</button>
   </p>
